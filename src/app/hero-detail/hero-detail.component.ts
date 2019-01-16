@@ -5,14 +5,15 @@ import { Location } from '@angular/common';
 import { Pokemon }         from '../pokemon';
 import { HeroService }  from '../hero.service';
 
+
 @Component({
   selector: 'app-hero-detail',
   templateUrl: './hero-detail.component.html',
   styleUrls: [ './hero-detail.component.css' ]
 })
 export class HeroDetailComponent implements OnInit {
-  hero: Pokemon;
-
+  hero: Pokemon;  
+  
   constructor(
     private route: ActivatedRoute,
     private heroService: HeroService,
@@ -26,7 +27,7 @@ export class HeroDetailComponent implements OnInit {
   getHero(): void {
     const id = +this.route.snapshot.paramMap.get('id');
     this.heroService.getHero(id)
-      .subscribe(hero => this.hero = hero);
+      .subscribe((hero: Pokemon) => this.hero = hero);
   }
 
   goBack(): void {
